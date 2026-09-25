@@ -1,0 +1,12 @@
+{
+  "name": "algoshelf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An interactive sorting and pathfinding learning lab",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node --test tests/algorithms.test.cjs"
+  },
+  "engines": { "node": ">=18" }
+}

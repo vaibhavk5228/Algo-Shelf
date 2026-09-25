@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="AlgoShelf: an interactive sorting and pathfinding lab. Step through five sorting algorithms, BFS and DFS." name="description"/>
+<title>AlgoShelf — The algorithm learning lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+<div><div class="brand"><span aria-hidden="true" class="brand-mark"><i></i><i></i><i></i></span>AlgoShelf<span style="color:#cbdc94">.</span></div><div class="side-sub">THE LEARNING LAB</div></div>
+<nav aria-label="Algorithm labs" class="nav"><div class="nav-label">EXPLORE THE LAB</div><button aria-pressed="true" id="sortTab"><span>▥   Sorting studio</span><span>01</span></button><button aria-pressed="false" id="pathTab"><span>⌘   Pathfinder</span><span>02</span></button></nav>
+<div class="side-note"><strong>Small steps. Big understanding.</strong>Make the invisible visible.<br/>Explore an algorithm, one operation at a time.<div style="margin-top:22px;font-size:10px;letter-spacing:1px">5 SORTS   /   2 SEARCHES</div></div>
+</aside>
+<main class="main">
+<div class="topline"><span>Algorithm lab   /   <strong id="breadcrumb">Sorting studio</strong></span><span class="tag">INTERACTIVE FIELD NOTES</span></div>
+<header class="intro"><div><div class="eyebrow" id="chapterLabel">01 / ORDER FROM CHAOS</div><h1 id="pageTitle">A little order.<br/>A lot of understanding.</h1><p id="subtitle">Turn a shelf of numbers into a lesson. Pick an algorithm and watch the logic unfold.</p></div><div aria-hidden="true" class="chapter" id="chapterNumber">01</div></header>
+<div class="workspace">
+<div>
+<section aria-label="Interactive visualization" class="lab">
+<div class="controls">
+<label class="control wide"><span>ALGORITHM</span><select id="algorithm"><option value="bubble">Bubble sort</option><option value="selection">Selection sort</option><option value="insertion">Insertion sort</option><option value="quick">Quick sort</option><option value="merge">Merge sort</option></select></label>
+<label class="control" id="sizeControl"><span>BOOKS <output id="sizeValue">16</output></span><input id="size" max="40" min="2" type="range" value="16"/></label>
+<label class="control"><span>PACE <output id="speedValue">1×</output></span><input aria-label="Animation speed" id="speed" max="5" min="1" type="range" value="3"/></label>
+<label class="control" id="patternControl"><span>STARTING ORDER</span><select id="pattern"><option value="random">Random</option><option value="reverse">Reverse</option><option value="sorted">Already sorted</option><option value="nearly">Nearly sorted</option><option value="duplicates">Few unique</option></select></label>
+</div>
+<div class="stage-head"><div><h2 id="stageTitle">The sorting shelf</h2><small id="stageCaption">Ascending order · values 1–99</small></div><span class="status" id="status">READY</span></div>
+<div id="sortScene"><div class="shelf-wrap"><div aria-label="Unsorted books" class="shelf" id="shelf" role="img"></div></div><div class="legend"><span><i class="dot"></i>Unsorted</span><span><i class="dot gold"></i>Active</span><span><i class="dot red"></i>Pivot</span><span><i class="dot green"></i>Final position</span></div></div>
+<div hidden="" id="pathScene"><div class="grid-wrap"><div aria-label="Grid editing tools" class="tools" role="group"><button aria-pressed="true" data-tool="wall">Draw walls</button><button aria-pressed="false" data-tool="erase">Erase</button><button aria-pressed="false" data-tool="start">Place S</button><button aria-pressed="false" data-tool="goal">Place G</button><button id="randomWalls">Random walls</button><button id="clearWalls">Clear walls</button></div><p class="grid-help">Drag to draw. Use arrow keys to move, Enter to edit. Scroll horizontally on small screens.</p><div aria-label="Pathfinding grid" class="grid" id="grid" role="group"></div></div><div class="legend"><span><i class="dot green"></i>S · Start</span><span><i class="dot red"></i>G · Goal</span><span><i class="dot wall"></i>Wall</span><span><i class="dot visited"></i>Visited</span><span><i class="dot gold"></i>Path</span></div></div>
+<div class="transport"><button class="primary" id="play">▶   Visualize</button><button aria-label="Previous step" class="btn-icon" id="back" title="Previous step">←</button><button id="step" title="Next step">Step →</button><button id="reset">↺ Reset</button><span class="spacer"></span><button id="shuffle">⇄ Shuffle</button></div>
+<div class="timeline"><label for="seek" id="stepLabel">Step 0 / 0</label><input aria-label="Animation timeline" id="seek" max="1" min="0" type="range" value="0"/></div>
+<div aria-live="polite" class="event" id="event" role="status">Choose an algorithm, then press Visualize or Step.</div>
+</section>
+<details class="custom" id="custom"><summary>Make it yours — enter a custom dataset</summary><form class="custom-row" id="customForm"><input aria-describedby="inputHelp inputError" aria-label="Comma separated values" id="numbers" placeholder="42, 16, 73, 8, 55, 24" type="text"/><button type="submit">Use numbers</button></form><p id="inputHelp">Enter 2–40 whole numbers between 1 and 99, separated by commas.</p><div class="error" id="inputError" role="alert"></div></details>
+<div class="stats"><div class="stat"><span class="number" id="stat1">0</span><small id="statLabel1">COMPARISONS</small></div><div class="stat"><span class="number" id="stat2">0</span><small id="statLabel2">ARRAY WRITES</small></div><div class="stat"><span class="number" id="stat3">16</span><small id="statLabel3">BOOKS ON SHELF</small></div></div>
+<div class="tip"><span aria-hidden="true">↗</span><div><strong>Try a different starting point.</strong> <span id="tip">Run the same algorithm on a reversed shelf, then an already sorted one. What changes?</span></div></div>
+</div>
+<aside aria-label="Algorithm explanation" class="insights"><section class="detail"><div class="eyebrow">UNDER THE HOOD</div><h2 id="infoTitle">Bubble sort</h2><p id="description"></p><div class="complexity"><div><small id="timeLabel">Average time</small><strong id="time"></strong></div><div><small>Auxiliary space</small><strong id="space"></strong></div></div><p class="note" id="note"></p></section><section class="detail"><h3>Follow the logic</h3><ol class="pseudocode" id="pseudocode"></ol><p class="note">Highlighted lines follow the current operation.</p></section></aside>
+</div>
+<footer><span>AlgoShelf · Learn by looking, understand by doing.</span><a href="https://github.com/tpSpace/Algorithms-Visualizer" rel="noopener noreferrer" target="_blank">Inspired by Algorithms-Visualizer ↗</a></footer>
+</main>
+</div>
+<script src="algorithms.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
